@@ -22,213 +22,54 @@
 ### 1️⃣ Dashboard — Your Mission Control
 > The main landing page showing your assessment status, active roadmap progress, and top career matches at a glance.
 
-```
-┌──────────────────────────────────────────────────────────────────────────────┐
-│  🌟 SkillBridge AI                          [Dashboard Overview]             │
-│  ─────────────────                                                           │
-│  📊 Dashboard      ┌─────────────────────────────────┐  ┌──────────────────┐ │
-│  📋 Assessment     │  Discover Your True Career      │  │  Your Profile    │ │
-│  🧭 Suggestions    │  Direction                      │  │  ──────────────  │ │
-│  🗺️  Roadmap        │  [Take Career Assessment →]     │  │  Assessment: ✅  │ │
-│  🔍 Gap Analyzer   └─────────────────────────────────┘  │  Skills: 4       │ │
-│  📊 Compare        ┌──────────────────────────────────┐  │  Target: SE      │ │
-│  🤖 AI Advisor     │  Active Roadmap Progress         │  └──────────────────┘ │
-│  🏆 Portfolio      │  [████████░░░░] 42% Complete     │                       │
-│                    └──────────────────────────────────┘                       │
-│  Target Career:                                                               │
-│  Software Engineer │  ⭐ Top Career Matches                                  │
-│  [██░░░] 25%       │  Software Engineer    92% ●                             │
-└──────────────────────────────────────────────────────────────────────────────┘
-```
+<p align="center">
+  <img src="assets/dashboard.png" alt="Dashboard Overview" width="900" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 20px;" />
+</p>
 
 ---
 
-### 2️⃣ Career Assessment Wizard — 3-Step Interest Profiling
-> Complete a structured 3-step wizard that captures your interests, existing skills, and work style preferences.
+### 2️⃣ Personalized Career Matches — AI Scoring Engine
+> The matching algorithm scores each career using your interest profile, skill overlap, and environment preference to show tailored suggestions.
 
-```
-STEP 1: Interest Rating          STEP 2: Skills Selection        STEP 3: Work Environment
-─────────────────────────        ──────────────────────────       ────────────────────────
- 💻 Coding & Technology          Technical & Development          Working Style
-    [──────●──────] High         [HTML] [CSS] [JavaScript]        ◉ Collaborative Team
-                                 [Python] [SQL] [Git] [React]     ○ Independent Focus
- 🎨 Design & Creative Arts
-    [────●────────] Moderate     Analytical & Math                Location Preference
-                                 [Statistics] [Data Analysis]     ◉ Remote / WFH
- 📊 Business & Strategy          [Excel] [ML] [Problem Solving]   ○ In-Person Office
-    [──────────●──] Very High
-                                 Creative & Design
- 🏥 Healthcare & Biology         [Figma] [UI Principles]          [← Back] [Submit & Match →]
-    [──●──────────] Low          [User Research] [Wireframing]
-```
+<p align="center">
+  <img src="assets/matches.png" alt="Personalized Career Matches" width="900" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 20px;" />
+</p>
 
 ---
 
-### 3️⃣ Personalized Career Matches — AI Scoring Engine
-> The matching algorithm scores each career using your interest profile, skill overlap, and environment preference.
-
-```
-Scoring Algorithm:
-  Interest Match  → 70 points  (6-dimension diff calculation)
-  Skill Match     → 30 points  (% of required skills possessed)
-  Environment Fit →  5 bonus   (work style + location preference)
-
-╔════════════════════════════════════════════════════════════════╗
-║  ⭐ RECOMMENDED                                                  ║
-║  Software Engineer (Frontend Focus)        Score: 92% Match     ║
-║  Technology & Engineering • Remote-friendly                     ║
-║  ─────────────────────────────────────────────────────────     ║
-║  Est. Salary: $105,000  │ Job Growth: +22%  │ Stress: Moderate ║
-║  ─────────────────────────────────────────────────────────     ║
-║  Required Skills:  ✅ HTML  ✅ CSS  ✅ JavaScript  ○ React/Vue ║
-║                    ✅ Git   ○ UI Design Principles              ║
-║  [🔄 Compare] [🔍 Analyze Gaps] [🎯 Set as Target]             ║
-╚════════════════════════════════════════════════════════════════╝
-```
-
----
-
-### 4️⃣ Interactive Career Roadmap — Milestone Checklist
+### 3️⃣ Interactive Career Roadmap — Milestone Checklist
 > Step-by-step milestone cards with interactive task checklists. Progress syncs live to the dashboard and sidebar.
 
-```
- Software Engineer — Journey Roadmap           [25%]
- ──────────────────────────────────────────────────
- ●─────────────────────────────────────────────────
- │
- ● ✅ Stage 1: Core Web Fundamentals       [READY]
- │    ☑ Master HTML5 semantic elements
- │    ☑ Understand CSS Box Model, Flexbox, Grid
- │    ☑ Deploy first responsive landing page
- │
- ● 🔵 Stage 2: Programming & Logic         [ACTIVE]
- │    ☑ Learn core JavaScript concepts
- │    ○ Master DOM manipulation & browser events
- │    ○ Fetch data from 3rd-party APIs
- │
- ● ○  Stage 3: Modern Tooling & Frameworks  [LOCKED]
-      ○ Learn Git command line basics
-      ○ Build SPA using React or Vue
-      ○ Manage state with Context/Redux
-```
+<p align="center">
+  <img src="assets/roadmap.png" alt="Career Journey Roadmap" width="900" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 20px;" />
+</p>
 
 ---
 
-### 5️⃣ Skill Gap Analyzer — Readiness Calculator
-> Compare your current skills against any target career. Get a personalized Skill Bridge Action Plan.
+### 4️⃣ Skill Gap Analyzer — Readiness Calculator
+> Compare your current skills against any target career and receive a personalized Skill Bridge Action Plan.
 
-```
-Target Career: Software Engineer (Frontend Focus)         [Analyze Skill Gaps]
-
-  ✅ Acquired Skills (4)          ❗ Missing Skills (3)
-  ─────────────────────           ────────────────────
-  HTML              [Acquired]    React/Vue           [Missing]
-  CSS               [Acquired]    UI Design Principles[Missing]
-  JavaScript        [Acquired]    Machine Learning    [Missing]
-  Python            [Acquired]
-
-  ┌─────────────────────────────────────────────────────────┐
-  │  🌉 Skill Bridge Action Plan               57% Ready    │
-  │  ──────────────────────────────────────────────────    │
-  │  1️⃣  Construct modular component-based interfaces        │
-  │      Study React/Vue component architecture & hooks     │
-  │                                                         │
-  │  2️⃣  Deconstruct alignment layouts and spacing rules     │
-  │      Color theory, typography, visual balance           │
-  └─────────────────────────────────────────────────────────┘
-```
+<p align="center">
+  <img src="assets/gap_analyzer.png" alt="Skill Gap Analysis" width="900" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 20px;" />
+</p>
 
 ---
 
-### 6️⃣ Career Comparison Matrix — Side-by-Side Analytics
-> Compare any two careers across salary, growth, stress, education, and 4 interest-fit dimensions.
+### 5️⃣ Career Comparison Matrix — Side-by-Side Analytics
+> Compare any two careers across industry, salary, growth, stress, location, and key attribute scores.
 
-```
-  Primary Career          VS        Secondary Career
-  Software Engineer               Data Scientist
-  ────────────────────────────────────────────────
-  Metric               Software Eng       Data Scientist
-  ──────────────────── ──────────────     ──────────────
-  Industry Sector      Technology         Technology
-  Average Salary       $105,000 💚        $120,000 💚
-  Job Growth           +22% (High)        +36% (Very High)
-  Work-Life Balance    Good (Moderate)    Challenging (High)
-  Education Required   Bachelors/Self     Bachelors/Masters
-  Location             Remote-friendly    Hybrid-friendly
-
-  Attribute Profiles:
-  Coding & Tech    ████████████░  /  ████████░░░░
-  Creative Design  ████░░░░░░░░░  /  ██░░░░░░░░░░
-  Business Focus   ████░░░░░░░░░  /  ██████░░░░░░
-  Data Analysis    ████████░░░░░  /  ██████████░░
-                   ■ Software Eng   ■ Data Scientist
-```
+<p align="center">
+  <img src="assets/compare.png" alt="Career Comparison Matrix" width="900" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 20px;" />
+</p>
 
 ---
 
-### 7️⃣ AI Career Advisor — Simulated Chat Interface
+### 6️⃣ AI Career Advisor — Simulated Chat Interface
 > Ask freeform questions about careers, salaries, roadmaps, and skill strategies. The advisor replies with rich, detailed guidance.
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  ✨ SkillBridge Guidance AI         🟢 Online & Active          │
-│  ─────────────────────────────────────────────────────────     │
-│                                                                 │
-│  👋 Hello! I am your SkillBridge Career Assistant.             │
-│     I can help explain career paths, clarify roadmap           │
-│     stages, and suggest resources. What would you like         │
-│     to explore today?                                          │
-│                                                                 │
-│                    What does a Data Scientist do all day?  →   │
-│                                                                 │
-│  📊 Data Scientists typically spend their day:                 │
-│    • Wrangling data using Python Pandas & NumPy                │
-│    • Querying databases with SQL                               │
-│    • Building forecast regression models                       │
-│    • Presenting visual reports to stakeholders                 │
-│    Market salary averages $120,000 with +36% growth...        │
-│                                                                 │
-│  [Ask a question about careers, roadmaps, or skills...]  [➤]  │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
-### 8️⃣ Portfolio Builder — Live Resume Generator + Skill Verification Quiz
-> Build and export a professional portfolio card. Verify your claimed skills by passing short knowledge quizzes.
-
-```
-  Customizer                  Live Resume Preview
-  ──────────────              ─────────────────────────────────────
-  Full Name:                  Student Developer
-  [Student Developer    ]     📧 student@skillbridge.edu
-                                                   TARGETING
-  Professional Email:         ─────────────────   Software Engineer
-  [student@skillbridge. ]
-                              PROFESSIONAL SUMMARY
-  Short Bio:                  Motivated student developer charting a
-  [Motivated student...]      pathway into the professional industry.
-
-  [⬇ Export Resume (.md)]    VERIFIED SKILL COMPETENCIES
-                              [✅ HTML] [CSS ⚡Verify] [✅ JavaScript]
-
-                              COMPLETED MILESTONES
-                              ✔ Stage 1: Core Web Fundamentals
-                                                    ╔═══════════════╗
-                                                    ║ VERIFIED BY   ║
-                                                    ║ SKILLBRIDGE AI║
-                                                    ╚═══════════════╝
-  ┌───────────────────────────────────────────────────────────────┐
-  │ SKILL VERIFICATION QUIZ: HTML                                 │
-  │ Answer 3 questions to verify this skill on your profile.     │
-  │ ─────────────────────────────────────────────────────────   │
-  │ Q1: What does the <semantics> element convey?                 │
-  │   ○ Page styling                                             │
-  │   ● Meaning and structure of content                         │
-  │   ○ Inline script blocks                                     │
-  │                               [Cancel] [Verify Skill →]      │
-  └───────────────────────────────────────────────────────────────┘
-```
+<p align="center">
+  <img src="assets/ai_advisor.png" alt="AI Career Advisor" width="900" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 20px;" />
+</p>
 
 ---
 
