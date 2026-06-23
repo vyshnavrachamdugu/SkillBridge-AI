@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkillBridge AI - Discover your perfect career path. Input skills and interests, analyze skill gaps, explore step-by-step career roadmaps, and learn with curated resources.">
+    <title>SkillBridge AI — Skill &rarr; Career Mapper</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <div class="logo-glow"></div>
+                    <i data-lucide="sparkles" class="logo-icon"></i>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-name">SkillBridge <span class="brand-badge">AI</span></span>
+                    <span class="brand-subtext">Skill &rarr; Career Mapper</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="dashboard">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-tab="assessment">
+                    <i data-lucide="clipboard-check"></i>
+                    <span>Assessment</span>
+                </button>
+                <button class="nav-item" data-tab="suggestions">
+                    <i data-lucide="compass"></i>
+                    <span>Suggestions</span>
+                </button>
+                <button class="nav-item" data-tab="roadmap">
+                    <i data-lucide="milestone"></i>
+                    <span>Career Roadmap</span>
+                </button>
+                <button class="nav-item" data-tab="gap-analyzer">
+                    <i data-lucide="git-pull-request"></i>
+                    <span>Gap Analyzer</span>
+                </button>
+                <button class="nav-item" data-tab="comparison">
+                    <i data-lucide="columns"></i>
+                    <span>Compare Careers</span>
+                </button>
+                <button class="nav-item" data-tab="advisor">
+                    <i data-lucide="bot"></i>
+                    <span>AI Career Advisor</span>
+                </button>
+                <button class="nav-item" data-tab="portfolio">
+                    <i data-lucide="award"></i>
+                    <span>Portfolio Builder</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="active-target-card" id="sidebar-target-card">
+                    <p class="target-label">Target Career</p>
+                    <p class="target-value" id="sidebar-target-career">None Selected</p>
+                    <div class="target-progress-container">
+                        <div class="target-progress-bar" id="sidebar-target-progress" style="width: 0%"></div>
+                    </div>
+                    <span class="target-progress-text" id="sidebar-target-text">0% Complete</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header bar -->
+            <header class="top-bar">
+                <div class="welcome-section">
+                    <h1 id="top-bar-title">Dashboard Overview</h1>
+                    <p id="top-bar-subtitle" class="text-muted">Welcome to SkillBridge AI. Start your journey below.</p>
+                </div>
+                <div class="top-bar-actions">
+                    <button class="btn btn-secondary btn-icon-only" id="btn-reset" title="Reset All Data">
+                        <i data-lucide="rotate-ccw"></i>
+                    </button>
+                    <div class="user-profile">
+                        <div class="avatar">S</div>
+                        <span class="username">Student</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Views / Tabs Container -->
+            <div class="view-viewport">
+                
+                <!-- VIEW 1: DASHBOARD -->
+                <section id="tab-dashboard" class="view-pane active">
+                    <div class="dashboard-grid">
+                        
+                        <!-- Hero Card / Quick Start -->
+                        <div class="dashboard-card card-hero span-2">
+                            <div class="hero-content">
+                                <h2>Discover Your True Career Direction</h2>
+                                <p>Unlock personalized path suggestions, build a step-by-step custom roadmap, analyze skill gaps, and explore premium learning resources designed to fast-track your future.</p>
+                                <button class="btn btn-primary" onclick="switchTab('assessment')">
+                                    <span>Take Career Assessment</span>
+                                    <i data-lucide="arrow-right"></i>
+                                </button>
+                            </div>
+                            <div class="hero-visual">
+                                <div class="hero-circle-glow glow-1"></div>
+                                <div class="hero-circle-glow glow-2"></div>
+                                <div class="hero-shapes">
+                                    <i data-lucide="trending-up" class="shape-1"></i>
+                                    <i data-lucide="graduation-cap" class="shape-2"></i>
+                                    <i data-lucide="briefcase" class="shape-3"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- User Profile Status Card -->
+                        <div class="dashboard-card card-status">
+                            <h3 class="card-title"><i data-lucide="user"></i>Your Profile</h3>
+                            <div class="profile-summary">
+                                <div class="stat-row">
+                                    <span class="stat-label">Assessment Status:</span>
+                                    <span class="stat-value text-accent" id="dash-assessment-status">Not Started</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Identified Skills:</span>
+                                    <span class="stat-value" id="dash-skills-count">0 Skills</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Target Career:</span>
+                                    <span class="stat-value text-highlight" id="dash-target-career">None</span>
+                                </div>
+                            </div>
+                            <div class="quick-skills-list" id="dash-skills-list">
+                                <!-- Populated dynamically -->
+                                <p class="text-muted text-center py-2" style="font-size: 0.85rem;">Take the assessment to discover your key skills.</p>
+                            </div>
+                        </div>
+
+                        <!-- Active Roadmap Progress Card -->
+                        <div class="dashboard-card card-progress span-2">
+                            <div class="card-header-actions">
+                                <h3 class="card-title"><i data-lucide="map"></i>Active Roadmap Progress</h3>
+                                <button class="btn-text" id="dash-view-roadmap-btn" onclick="switchTab('roadmap')">View Roadmap <i data-lucide="chevron-right" style="width: 14px; height: 14px;"></i></button>
+                            </div>
+                            <div class="roadmap-preview-wrapper" id="dash-roadmap-placeholder">
+                                <div class="empty-state">
+                                    <i data-lucide="route"></i>
+                                    <p>Select a career recommendation to activate your step-by-step professional roadmap.</p>
+                                    <button class="btn btn-secondary btn-sm" onclick="switchTab('suggestions')">Explore Careers</button>
+                                </div>
+                            </div>
+                            <div class="roadmap-active-details hidden" id="dash-roadmap-details">
+                                <div class="progress-header">
+                                    <h4 id="dash-roadmap-title">Frontend Developer</h4>
+                                    <span class="badge" id="dash-roadmap-pct">25% Done</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div class="progress-fill" id="dash-roadmap-bar" style="width: 25%"></div>
+                                </div>
+                                <div class="current-milestone-box">
+                                    <span class="milestone-label">Current Stage:</span>
+                                    <span class="milestone-title" id="dash-roadmap-stage">Stage 1: HTML & CSS Basics</span>
+                                    <p class="milestone-next-task text-muted" id="dash-roadmap-next-task">Next Up: Master Responsive Grid Layouts</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top Career Recommendations Quick List -->
+                        <div class="dashboard-card card-suggestions">
+                            <h3 class="card-title"><i data-lucide="sparkles"></i>Top Matches</h3>
+                            <div class="suggestions-list-quick" id="dash-suggestions-quick">
+                                <div class="empty-state py-4">
+                                    <p class="text-muted text-center" style="font-size: 0.85rem;">Complete the assessment to view matching careers.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 2: ASSESSMENT -->
+                <section id="tab-assessment" class="view-pane">
+                    <div class="assessment-container">
+                        <!-- Left pane: Progress Tracker -->
+                        <div class="assessment-progress-card">
+                            <div class="wizard-steps-indicator">
+                                <div class="wizard-step active" data-step="1">
+                                    <div class="step-num">1</div>
+                                    <div class="step-label">Interests Rating</div>
+                                </div>
+                                <div class="wizard-line"></div>
+                                <div class="wizard-step" data-step="2">
+                                    <div class="step-num">2</div>
+                                    <div class="step-label">Current Skills</div>
+                                </div>
+                                <div class="wizard-line"></div>
+                                <div class="wizard-step" data-step="3">
+                                    <div class="step-num">3</div>
+                                    <div class="step-label">Work Environment</div>
+                                </div>
+                            </div>
+                            <div class="assessment-tip">
+                                <h5><i data-lucide="lightbulb" class="text-accent"></i> Tip</h5>
+                                <p>Be honest about what you enjoy. The best career fits match both your skills and your genuine curiosity.</p>
+                            </div>
+                        </div>
+
+                        <!-- Right pane: Question Form Wizard -->
+                        <div class="assessment-wizard-card">
+                            <form id="assessment-form" onsubmit="event.preventDefault();">
+                                
+                                <!-- STEP 1: INTERESTS -->
+                                <div class="step-content active" id="step-1-content">
+                                    <div class="step-header">
+                                        <h3>What activities excite you?</h3>
+                                        <p class="text-muted">Rate your level of interest in the following general areas.</p>
+                                    </div>
+                                    
+                                    <div class="interests-grid">
+                                        <div class="interest-slider-card">
+                                            <div class="slider-header">
+                                                <div class="slider-title-icon">
+                                                    <i data-lucide="code" class="text-blue"></i>
+                                                    <span>Coding & Technology</span>
+                                                </div>
+                                                <span class="slider-badge" id="val-interest-tech">Moderate</span>
+                                            </div>
+                                            <p class="slider-description">Writing code, solving algorithmic problems, automating tasks, building software.</p>
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="interest-tech">
+                                        </div>
+
+                                        <div class="interest-slider-card">
+                                            <div class="slider-header">
+                                                <div class="slider-title-icon">
+                                                    <i data-lucide="palette" class="text-pink"></i>
+                                                    <span>Design & Creative Arts</span>
+                                                </div>
+                                                <span class="slider-badge" id="val-interest-creative">Moderate</span>
+                                            </div>
+                                            <p class="slider-description">Visual layouts, sketching, animations, styling UI, creative writing, architecture.</p>
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="interest-creative">
+                                        </div>
+
+                                        <div class="interest-slider-card">
+                                            <div class="slider-header">
+                                                <div class="slider-title-icon">
+                                                    <i data-lucide="bar-chart-3" class="text-green"></i>
+                                                    <span>Business & Strategy</span>
+                                                </div>
+                                                <span class="slider-badge" id="val-interest-business">Moderate</span>
+                                            </div>
+                                            <p class="slider-description">Marketing products, financial planning, managing teams, analyzing market metrics.</p>
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="interest-business">
+                                        </div>
+
+                                        <div class="interest-slider-card">
+                                            <div class="slider-header">
+                                                <div class="slider-title-icon">
+                                                    <i data-lucide="stethoscope" class="text-red"></i>
+                                                    <span>Healthcare & Biology</span>
+                                                </div>
+                                                <span class="slider-badge" id="val-interest-health">Moderate</span>
+                                            </div>
+                                            <p class="slider-description">Understanding human health, medical technology, drug development, analyzing patient data.</p>
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="interest-health">
+                                        </div>
+
+                                        <div class="interest-slider-card">
+                                            <div class="slider-header">
+                                                <div class="slider-title-icon">
+                                                    <i data-lucide="binary" class="text-purple"></i>
+                                                    <span>Analysis & Data Science</span>
+                                                </div>
+                                                <span class="slider-badge" id="val-interest-data">Moderate</span>
+                                            </div>
+                                            <p class="slider-description">Interpreting stats, finding patterns, writing database queries, database engineering.</p>
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="interest-data">
+                                        </div>
+
+                                        <div class="interest-slider-card">
+                                            <div class="slider-header">
+                                                <div class="slider-title-icon">
+                                                    <i data-lucide="users" class="text-orange"></i>
+                                                    <span>Social & Communication</span>
+                                                </div>
+                                                <span class="slider-badge" id="val-interest-social">Moderate</span>
+                                            </div>
+                                            <p class="slider-description">Teaching others, counseling, public relations, writing documentation, customer success.</p>
+                                            <input type="range" min="1" max="5" value="3" class="slider" id="interest-social">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- STEP 2: SKILLS -->
+                                <div class="step-content" id="step-2-content">
+                                    <div class="step-header">
+                                        <h3>What are your current skills?</h3>
+                                        <p class="text-muted">Select any skills you have already developed. Don't worry if you're a beginner!</p>
+                                    </div>
+
+                                    <div class="skills-selector-section">
+                                        <div class="skill-category-group">
+                                            <h4>Technical & Development</h4>
+                                            <div class="skill-chips-container" id="category-tech-skills">
+                                                <!-- Populated by JavaScript -->
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-category-group">
+                                            <h4>Analytical & Math</h4>
+                                            <div class="skill-chips-container" id="category-analytical-skills">
+                                                <!-- Populated by JavaScript -->
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-category-group">
+                                            <h4>Creative & Design</h4>
+                                            <div class="skill-chips-container" id="category-creative-skills">
+                                                <!-- Populated by JavaScript -->
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-category-group">
+                                            <h4>Interpersonal & Business</h4>
+                                            <div class="skill-chips-container" id="category-business-skills">
+                                                <!-- Populated by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- STEP 3: WORK ENVIRONMENT -->
+                                <div class="step-content" id="step-3-content">
+                                    <div class="step-header">
+                                        <h3>Your Preferred Work Style</h3>
+                                        <p class="text-muted">Choose options that describe your ideal professional day.</p>
+                                    </div>
+
+                                    <div class="work-style-grid">
+                                        <div class="work-card-group">
+                                            <h5>Working Style</h5>
+                                            <div class="radio-cards">
+                                                <label class="radio-card">
+                                                    <input type="radio" name="work-style" value="collaborative" checked>
+                                                    <div class="radio-card-content">
+                                                        <i data-lucide="users-2"></i>
+                                                        <span class="title">Collaborative Teamwork</span>
+                                                        <span class="desc">Working closely with groups and cross-functional teams.</span>
+                                                    </div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="work-style" value="independent">
+                                                    <div class="radio-card-content">
+                                                        <i data-lucide="user-check"></i>
+                                                        <span class="title">Independent Execution</span>
+                                                        <span class="desc">Focusing on deep tasks individually with minimal direct oversight.</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="work-card-group">
+                                            <h5>Location Preference</h5>
+                                            <div class="radio-cards">
+                                                <label class="radio-card">
+                                                    <input type="radio" name="location-pref" value="remote" checked>
+                                                    <div class="radio-card-content">
+                                                        <i data-lucide="home"></i>
+                                                        <span class="title">Remote / Work from Home</span>
+                                                        <span class="desc">Digital workspaces, flexibility, and virtual meetings.</span>
+                                                    </div>
+                                                </label>
+                                                <label class="radio-card">
+                                                    <input type="radio" name="location-pref" value="office">
+                                                    <div class="radio-card-content">
+                                                        <i data-lucide="building-2"></i>
+                                                        <span class="title">In-Person Office / Dynamic Lab</span>
+                                                        <span class="desc">Face-to-face meetings, designated workstations, structured space.</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Wizard navigation buttons -->
+                                <div class="wizard-actions">
+                                    <button type="button" class="btn btn-secondary btn-icon-left" id="btn-wizard-prev" disabled>
+                                        <i data-lucide="arrow-left"></i>
+                                        <span>Back</span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-icon-right" id="btn-wizard-next">
+                                        <span>Next</span>
+                                        <i data-lucide="arrow-right"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 3: SUGGESTIONS -->
+                <section id="tab-suggestions" class="view-pane">
+                    <div class="suggestions-layout">
+                        <!-- Filter Sidebar / Controls -->
+                        <div class="suggestions-sidebar">
+                            <div class="filter-card">
+                                <h3>Filter Careers</h3>
+                                <div class="filter-group">
+                                    <label for="filter-domain">Industry / Domain</label>
+                                    <select id="filter-domain" class="select-control">
+                                        <option value="all">All Industries</option>
+                                        <option value="tech">Technology & Engineering</option>
+                                        <option value="creative">Design & Creative Arts</option>
+                                        <option value="business">Business & Finance</option>
+                                        <option value="healthcare">Healthcare & Sciences</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label>Sort By</label>
+                                    <select id="sort-careers" class="select-control">
+                                        <option value="match">Highest Match Score</option>
+                                        <option value="salary">Average Salary</option>
+                                        <option value="demand">Future Job Demand</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recommendations list -->
+                        <div class="suggestions-main">
+                            <div class="suggestions-header-bar">
+                                <h2>Your Match Results</h2>
+                                <span class="badge" id="matches-count-badge">0 Paths Found</span>
+                            </div>
+
+                            <div class="suggestions-grid-main" id="suggestions-list-container">
+                                <!-- Populated dynamically -->
+                                <div class="empty-state py-5">
+                                    <i data-lucide="compass" class="lg"></i>
+                                    <h4>No matches generated yet</h4>
+                                    <p class="text-muted">Take the assessment first to calculate matches based on your interest profile.</p>
+                                    <button class="btn btn-primary mt-3" onclick="switchTab('assessment')">Go to Assessment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 4: ROADMAP -->
+                <section id="tab-roadmap" class="view-pane">
+                    <div class="roadmap-view-container">
+                        <!-- Left Panel: Roadmap Tree/Navigation -->
+                        <div class="roadmap-tree-panel">
+                            <div class="roadmap-header">
+                                <div class="roadmap-title-area">
+                                    <span class="text-accent text-bold" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Journey Map</span>
+                                    <h2 id="roadmap-main-title">No Active Career</h2>
+                                </div>
+                                <div class="roadmap-progress-widget">
+                                    <div class="progress-radial-placeholder">
+                                        <span class="radial-number" id="roadmap-radial-pct">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Career Selector Quick Jump -->
+                            <div class="career-quick-selector">
+                                <label for="active-roadmap-selector">Target Career:</label>
+                                <select id="active-roadmap-selector" class="select-control">
+                                    <!-- Populated dynamically with available careers -->
+                                </select>
+                            </div>
+
+                            <div class="roadmap-nodes-container" id="roadmap-milestones-list">
+                                <!-- Populated by JS -->
+                                <div class="empty-state py-5">
+                                    <i data-lucide="map" class="lg"></i>
+                                    <h4>No Active Career Roadmap</h4>
+                                    <p class="text-muted">Select a target career from your suggestions tab or select one in the dropdown above to view the journey.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Learning Resource Hub & Milestones Details -->
+                        <div class="roadmap-resources-panel">
+                            <h3 class="panel-section-title"><i data-lucide="book-open"></i>Curated Learning Resources</h3>
+                            <p class="text-muted mb-4" id="resources-description">Explore free and paid resources tailored specifically to support your roadmap progress.</p>
+                            
+                            <!-- Resource Hub Filter Tabs -->
+                            <div class="resource-filter-tabs">
+                                <button class="res-tab active" data-res-filter="all">All Resources</button>
+                                <button class="res-tab" data-res-filter="course">Courses & Certs</button>
+                                <button class="res-tab" data-res-filter="project">Hands-on Projects</button>
+                                <button class="res-tab" data-res-filter="book">Books & Docs</button>
+                            </div>
+
+                            <div class="resources-grid-list" id="roadmap-resources-list">
+                                <!-- Populated by JS -->
+                                <p class="text-muted text-center py-4">Please select a career to load learning materials.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 5: GAP ANALYZER -->
+                <section id="tab-gap-analyzer" class="view-pane">
+                    <div class="gap-analyzer-container">
+                        <div class="gap-top-summary card-premium">
+                            <div class="gap-hero-text">
+                                <h2>Skill Gap Analyzer</h2>
+                                <p>Compare your current self-reported skills against the exact requirements of any career path. Generate a custom plan to acquire missing competencies.</p>
+                            </div>
+                            <div class="gap-selection-bar">
+                                <div class="select-group">
+                                    <label for="gap-target-selector">Target Career Path:</label>
+                                    <select id="gap-target-selector" class="select-control">
+                                        <!-- Dynamically populated -->
+                                    </select>
+                                </div>
+                                <button class="btn btn-accent" id="btn-analyze-gap">Analyze Skill Gaps</button>
+                            </div>
+                        </div>
+
+                        <div class="gap-results-layout hidden" id="gap-results-wrapper">
+                            <!-- Skill Status Cards Grid -->
+                            <div class="gap-column">
+                                <div class="gap-card list-acquired">
+                                    <h3 class="gap-card-title text-success"><i data-lucide="check-circle2"></i> Acquired Skills (<span id="count-acquired-skills">0</span>)</h3>
+                                    <div class="gap-skills-list" id="gap-list-acquired-skills">
+                                        <!-- Populated dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="gap-column">
+                                <div class="gap-card list-missing">
+                                    <h3 class="gap-card-title text-accent"><i data-lucide="alert-circle"></i> Missing Skills (<span id="count-missing-skills">0</span>)</h3>
+                                    <div class="gap-skills-list" id="gap-list-missing-skills">
+                                        <!-- Populated dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Interactive bridge plan -->
+                            <div class="gap-column span-full">
+                                <div class="gap-card action-bridge-card">
+                                    <div class="bridge-header">
+                                        <div class="bridge-title">
+                                            <h4>Skill Bridge Action Plan</h4>
+                                            <p class="text-muted">Here are recommended steps to target your missing skills efficiently.</p>
+                                        </div>
+                                        <div class="bridge-pct-box">
+                                            <span class="bridge-pct-number" id="gap-bridge-pct">0% Ready</span>
+                                        </div>
+                                    </div>
+                                    <div class="bridge-actions-list" id="gap-bridge-actions">
+                                        <!-- Populated dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Initial Empty State -->
+                        <div class="empty-state py-5" id="gap-empty-state">
+                            <i data-lucide="git-pull-request" class="lg"></i>
+                            <h4>Select a career to analyze gaps</h4>
+                            <p class="text-muted">We will compare your current selected profile skills with the target skills of your chosen career field.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 6: COMPARISON -->
+                <section id="tab-comparison" class="view-pane">
+                    <div class="compare-container">
+                        <div class="compare-selectors-header card-premium">
+                            <h3>Side-by-Side Career Match Comparison</h3>
+                            <p class="text-muted">Select any two professional paths to compare salaries, growth potential, work balance, and skill requirements directly.</p>
+                            
+                            <div class="selectors-flex">
+                                <div class="selector-box">
+                                    <label for="compare-career-1">Primary Career</label>
+                                    <select id="compare-career-1" class="select-control">
+                                        <!-- Populated dynamically -->
+                                    </select>
+                                </div>
+                                <div class="compare-vs">VS</div>
+                                <div class="selector-box">
+                                    <label for="compare-career-2">Secondary Career</label>
+                                    <select id="compare-career-2" class="select-control">
+                                        <!-- Populated dynamically -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comparison Details Panels -->
+                        <div class="compare-results-grid hidden" id="compare-results-panel">
+                            <!-- Comparison Table Card -->
+                            <div class="compare-card">
+                                <h4>Key Stats & Metrics</h4>
+                                <div class="compare-table-wrapper">
+                                    <table class="compare-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Metric</th>
+                                                <th id="comp-name-1">Career A</th>
+                                                <th id="comp-name-2">Career B</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="metric-label">Industry Sector</td>
+                                                <td id="comp-sector-1">Tech</td>
+                                                <td id="comp-sector-2">Business</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="metric-label">Average Salary</td>
+                                                <td id="comp-salary-1" class="text-success text-bold">$100k</td>
+                                                <td id="comp-salary-2" class="text-success text-bold">$90k</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="metric-label">Future Job Growth</td>
+                                                <td id="comp-growth-1">+15% (High)</td>
+                                                <td id="comp-growth-2">+8% (Medium)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="metric-label">Work-Life Balance</td>
+                                                <td id="comp-wlb-1">Excellent</td>
+                                                <td id="comp-wlb-2">Good</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="metric-label">Required Education</td>
+                                                <td id="comp-education-1">Bachelors / Self-taught</td>
+                                                <td id="comp-education-2">Bachelors</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="metric-label">Preferred Location</td>
+                                                <td id="comp-location-1">Remote-friendly</td>
+                                                <td id="comp-location-2">Office-friendly</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Core Competencies Comparison -->
+                            <div class="compare-card">
+                                <h4>Attribute Profiles Comparison</h4>
+                                <p class="text-muted text-small mb-4">A direct analysis of interest profiles demanded by each path.</p>
+                                
+                                <div class="attributes-compare-list">
+                                    <!-- Coding Attribute -->
+                                    <div class="attribute-bar-group">
+                                        <div class="attr-labels">
+                                            <span>Coding & Tech Focus</span>
+                                            <span class="attr-val-pair"><span id="attr-code-1">8</span> / <span id="attr-code-2">2</span></span>
+                                        </div>
+                                        <div class="dual-progress-bar">
+                                            <div class="dual-fill fill-primary" id="bar-code-1" style="width: 80%"></div>
+                                            <div class="dual-fill fill-secondary" id="bar-code-2" style="width: 20%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Creative Attribute -->
+                                    <div class="attribute-bar-group">
+                                        <div class="attr-labels">
+                                            <span>Creative & Design Focus</span>
+                                            <span class="attr-val-pair"><span id="attr-design-1">4</span> / <span id="attr-design-2">9</span></span>
+                                        </div>
+                                        <div class="dual-progress-bar">
+                                            <div class="dual-fill fill-primary" id="bar-design-1" style="width: 40%"></div>
+                                            <div class="dual-fill fill-secondary" id="bar-design-2" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Business Attribute -->
+                                    <div class="attribute-bar-group">
+                                        <div class="attr-labels">
+                                            <span>Business & Strategy Focus</span>
+                                            <span class="attr-val-pair"><span id="attr-business-1">4</span> / <span id="attr-business-2">9</span></span>
+                                        </div>
+                                        <div class="dual-progress-bar">
+                                            <div class="dual-fill fill-primary" id="bar-business-1" style="width: 40%"></div>
+                                            <div class="dual-fill fill-secondary" id="bar-business-2" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Data Analytical Attribute -->
+                                    <div class="attribute-bar-group">
+                                        <div class="attr-labels">
+                                            <span>Data Analysis Focus</span>
+                                            <span class="attr-val-pair"><span id="attr-data-1">4</span> / <span id="attr-data-2">9</span></span>
+                                        </div>
+                                        <div class="dual-progress-bar">
+                                            <div class="dual-fill fill-primary" id="bar-data-1" style="width: 40%"></div>
+                                            <div class="dual-fill fill-secondary" id="bar-data-2" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="compare-legend">
+                                    <span class="legend-item"><span class="legend-color color-primary"></span><span id="legend-label-1">Career A</span></span>
+                                    <span class="legend-item"><span class="legend-color color-secondary"></span><span id="legend-label-2">Career B</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 7: ADVISOR -->
+                <section id="tab-advisor" class="view-pane">
+                    <div class="advisor-container">
+                        <!-- Left Panel: System / Tips -->
+                        <div class="advisor-info-card">
+                            <h3><i data-lucide="bot" class="text-accent"></i> Ask SkillBridge Advisor</h3>
+                            <p class="text-muted">Chat with our simulated career advisory AI. Ask detailed questions about required skills, salary paths, stress levels, day-in-the-life, or general recommendations.</p>
+                            
+                            <div class="suggested-prompts-group">
+                                <h5>Suggested Questions:</h5>
+                                <button class="btn btn-outline btn-sm prompt-pill">What does a Data Scientist actually do all day?</button>
+                                <button class="btn btn-outline btn-sm prompt-pill">Which career has the highest starting salary?</button>
+                                <button class="btn btn-outline btn-sm prompt-pill">How do I become a UI/UX Designer with no coding?</button>
+                                <button class="btn btn-outline btn-sm prompt-pill">Can I work remotely as a Financial Analyst?</button>
+                            </div>
+                        </div>
+
+                        <!-- Right Panel: Interactive Chat Terminal -->
+                        <div class="advisor-chat-card">
+                            <div class="chat-header">
+                                <div class="advisor-badge-avatar">
+                                    <i data-lucide="sparkles"></i>
+                                </div>
+                                <div class="advisor-meta">
+                                    <span class="advisor-name">SkillBridge Guidance AI</span>
+                                    <span class="advisor-status"><span class="status-dot animate-pulse"></span> Online & Active</span>
+                                </div>
+                            </div>
+
+                            <!-- Chat Messages Area -->
+                            <div class="chat-messages-viewport" id="chat-messages-container">
+                                <div class="message msg-ai">
+                                    <div class="message-content">
+                                        <p>Hello! I am your SkillBridge Career Assistant. 👋</p>
+                                        <p>I can help explain details about our career matches, clarify the stages in your roadmaps, or give suggestions on what resources fit your goals. What would you like to explore today?</p>
+                                    </div>
+                                    <span class="message-timestamp">Just Now</span>
+                                </div>
+                            </div>
+
+                            <!-- Input Form -->
+                            <form id="chat-input-form" class="chat-input-bar">
+                                <input type="text" id="chat-user-message" placeholder="Ask a question about careers, roadmaps, or skills..." autocomplete="off" required>
+                                <button type="submit" class="btn btn-primary btn-icon-only" id="chat-send-btn">
+                                    <i data-lucide="send"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 8: PORTFOLIO BUILDER -->
+                <section id="tab-portfolio" class="view-pane">
+                    <div class="portfolio-container">
+                        <!-- Left Panel: Customizer inputs -->
+                        <div class="portfolio-customizer card-premium">
+                            <h3>Customize Your Profile</h3>
+                            <p class="text-muted text-small mb-4">Edit details to dynamically update your professional portfolio template.</p>
+                            
+                            <div class="filter-group">
+                                <label for="pf-name">Full Name</label>
+                                <input type="text" id="pf-name" class="select-control" value="Student Developer" style="background: var(--bg-input);">
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="pf-email">Professional Email</label>
+                                <input type="email" id="pf-email" class="select-control" value="student@skillbridge.edu" style="background: var(--bg-input);">
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="pf-bio">Short Professional Bio</label>
+                                <textarea id="pf-bio" class="select-control" rows="4" style="background: var(--bg-input); resize: none; font-family: var(--font-primary); font-size: 0.88rem; line-height: 1.4;">Motivated student developer charting a pathway to enter the professional industry using verified skill acquisitions.</textarea>
+                            </div>
+
+                            <button class="btn btn-primary w-full mt-4" id="btn-export-portfolio" style="width: 100%; margin-top: 16px;">
+                                <i data-lucide="download"></i> Export Resume (.md)
+                            </button>
+                        </div>
+
+                        <!-- Right Panel: Gorgeous Resume Preview -->
+                        <div class="portfolio-preview-card">
+                            <div class="resume-sheet">
+                                <div class="resume-header">
+                                    <div class="resume-title-box">
+                                        <h2 id="resume-preview-name">Student Developer</h2>
+                                        <p class="resume-email-line" id="resume-preview-email">student@skillbridge.edu</p>
+                                    </div>
+                                    <div class="resume-target-badge">
+                                        <span class="lbl">TARGETING</span>
+                                        <span class="val" id="resume-preview-target">None Selected</span>
+                                    </div>
+                                </div>
+
+                                <div class="resume-divider"></div>
+
+                                <div class="resume-section">
+                                    <h4>Professional Summary</h4>
+                                    <p id="resume-preview-bio">Motivated student developer charting a pathway to enter the professional industry using verified skill acquisitions.</p>
+                                </div>
+
+                                <div class="resume-section">
+                                    <h4>Verified Skill Competencies</h4>
+                                    <div class="resume-skills-grid" id="resume-preview-skills">
+                                        <!-- Dynamic acquired skills list -->
+                                    </div>
+                                </div>
+
+                                <div class="resume-section">
+                                    <h4>Completed Milestone Stages</h4>
+                                    <ul class="resume-milestones-list" id="resume-preview-milestones">
+                                        <!-- Dynamic list of completed milestones -->
+                                    </ul>
+                                </div>
+
+                                <div class="resume-badge-stamp">
+                                    <div class="badge-icon-bg"><i data-lucide="award"></i></div>
+                                    <div class="badge-text-stamp">
+                                        <span class="stamp-verified">VERIFIED BY</span>
+                                        <span class="stamp-org">SKILLBRIDGE AI</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- QUIZ MODAL OVERLAY -->
+    <div class="modal-backdrop hidden" id="quiz-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <i data-lucide="graduation-cap" class="text-accent"></i>
+                    <div>
+                        <h4 id="quiz-title">Skill Verification Quiz</h4>
+                        <p class="text-muted" style="font-size: 0.75rem;">Answer 3 questions to verify this skill on your profile.</p>
+                    </div>
+                </div>
+                <button class="btn-close-modal" id="btn-close-quiz">&times;</button>
+            </div>
+            <div class="modal-body" id="quiz-questions-body">
+                <!-- Dynamically generated questions -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-cancel-quiz">Cancel</button>
+                <button class="btn btn-primary" id="btn-submit-quiz">Verify Skill</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
