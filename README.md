@@ -19,6 +19,35 @@
 
 ## 📸 Application Workflow
 
+To help students navigate from initial career uncertainty to a professional verified resume, SkillBridge AI maps out a structured 4-phase user journey.
+
+<p align="center">
+  <img src="assets/workflow.png" alt="SkillBridge AI System Workflow Diagram" width="900" style="border-radius: 8px; box-shadow: 0 4px 25px rgba(0,0,0,0.5); margin-bottom: 24px;" />
+</p>
+
+### 🗺️ The 4-Phase Student Success Path
+
+```
+┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
+│  1. Input & Profiling  │ ───> │ 2. Similarity Engine   │ ───> │  3. Active Roadmap &   │ ───> │  4. Verify & Export   │
+│  (Interest Assessment) │      │ (AI Match Score Calc)  │      │  Analytics Dashboard   │      │ (Quizzes & Portfolio)  │
+└────────────────────────┘      └────────────────────────┘      └────────────────────────┘      └────────────────────────┘
+```
+
+1. **Phase 1: Input & Profiling (Assessment Wizard)**
+   Students input their core competencies, evaluate their interests across 6 dimensions, and set their work preferences (remote vs. hybrid, collaborative vs. focused).
+2. **Phase 2: AI Match Scoring Engine**
+   The application matches the student's profile against the career database using interest similarity calculations, skill overlaps, and environmental preferences to rank matches by percentage score.
+3. **Phase 3: Roadmapping & Skill Gap Analysis**
+   Once a target career is chosen, students get:
+   - An **interactive checklist roadmap** broken into developmental milestones.
+   - A **Skill Gap Analyzer** that isolates missing technical elements and generates a customized bridging plan.
+   - An **AI Career Advisor** for interactive, guidance-based conversation.
+4. **Phase 4: Skill Verification & Resume Export**
+   Students test their knowledge via interactive **Skill Quizzes**. Passing results add permanent verification badges to their dynamic profile card, which can be downloaded as a Markdown resume.
+
+---
+
 ### 1️⃣ Dashboard — Your Mission Control
 > The main landing page showing your assessment status, active roadmap progress, and top career matches at a glance.
 
